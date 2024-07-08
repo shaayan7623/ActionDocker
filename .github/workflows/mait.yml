@@ -1,19 +1,17 @@
-name: Publish Website
-
+name: Deploy via ftp
 on: push
-
 jobs:
-  Fast-FTP-Action:
-    name: Fast FTP Action
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
-    - name: Fast FTP Action
-      uses: anvil-solutions/Fast-FTP-Action@2.1.0
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        server: ftp.samkirklan7d.com
-        port: 2222
-        username: myFtpUserName
+        host: ftp.naat.com
+        user: soul
         password: 11219
+        localDir: "dist"
+        remoteDir: "www"
+        options: "--delete --asci"
